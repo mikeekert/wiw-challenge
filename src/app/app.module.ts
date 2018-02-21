@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HeroService } from './hero.service';
+import { UserProfileModule } from './user-profile/user-profile.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HeroService } from './hero.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    UserProfileModule
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]

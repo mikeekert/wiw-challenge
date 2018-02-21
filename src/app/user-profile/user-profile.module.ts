@@ -8,6 +8,7 @@ import { LocationsComponent } from './locations/locations.component';
   imports: [
     CommonModule
   ],
-  declarations: [DetailsComponent, UserProfileComponent, LocationsComponent]
+  declarations: [DetailsComponent, UserProfileComponent, LocationsComponent],
+  exports: [DetailsComponent, UserProfileComponent, LocationsComponent]
 })
 export class UserProfileModule { }
