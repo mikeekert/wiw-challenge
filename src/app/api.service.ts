@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 import {User} from '../app/user';
 
@@ -22,6 +21,6 @@ export class ApiService {
     this.feedApiUrn = `users/profile`;
     const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}`;
 
-    return this.http.get<User>(apiUrl, this.httpOptions);
+    return this.http.get < User > (apiUrl, this.httpOptions);
   }
 }

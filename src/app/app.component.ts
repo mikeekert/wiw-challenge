@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../app/api.service';
 import * as $ from 'jquery';
-import { User } from '../app/user';
-import { Observable } from 'rxjs/Observable';
+import {User} from '../app/user';
 
 @Component({selector: 'app-root', templateUrl: './app.component.html', styleUrls: ['./app.component.scss']})
 export class AppComponent implements OnInit {
 
-  userFeed: User[];
   constructor(private apiService: ApiService) {}
+  userFeed: User[];
   title = 'app';
 
   ngOnInit() {
@@ -17,7 +16,13 @@ export class AppComponent implements OnInit {
       .getUserInfo()
       .subscribe(res => {
         this.userFeed = [res];
-        console.log(this.userFeed);
+        // needed to adjust the api data, to remove extraneous characters at end of url
+        this.userFeed[0].user.avatar.url = this
+          .userFeed[0]
+          .user
+          .avatar
+          .url
+          .slice(0, -3);
       });
   }
 }
