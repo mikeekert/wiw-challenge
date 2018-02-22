@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HeroService } from './hero.service';
+import { ApiService } from './api.service';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { NavComponent } from './nav/nav.component';
 
@@ -20,7 +20,7 @@ import { NavComponent } from './nav/nav.component';
     HttpClientModule,
     UserProfileModule
   ],
-  providers: [HeroService],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
