@@ -1,7 +1,7 @@
 <section class="wiw-userdetails d-flex flex-column justify-content-center align-items-center container">
   <div class="wiw-userimage m-3">
-    <i class="fas fa-user-secret fa-8x"></i>
+    <img [src]="userFeed.user.avatar.url">
   </div>
-<app-details></app-details>
-<app-locations></app-locations>
+  <app-details [userFeed]="userFeed"></app-details>
+  <app-locations></app-locations>
 </section>
