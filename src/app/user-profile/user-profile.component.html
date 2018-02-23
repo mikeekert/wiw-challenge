@@ -1,7 +1,7 @@
 <section class="wiw-userdetails d-flex flex-column justify-content-center align-items-center container">
-  <div class="wiw-userimage m-3">
-    <img [src]="userFeed.user.avatar.url">
+  <div class="wiw-userimage m-3" *ngIf="UserFeed">
+    <img [src]="UserFeed.Avatar.Url">
   </div>
-  <app-details [userFeed]="userFeed"></app-details>
+  <app-details [UserFeed]="UserFeed"></app-details>
   <app-positions></app-positions>
 </section>
