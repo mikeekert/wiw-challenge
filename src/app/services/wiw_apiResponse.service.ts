@@ -32,6 +32,6 @@ export class ApiService {
       'last_name': userInfo.last_name,
       'email': userInfo.email
     };
-    this.http.post < ApiUserResponse > (apiUrl, data, this.httpOptions).subscribe(res => console.log(res));
+    return this.http.post < ApiUserResponse > (apiUrl, data, this.httpOptions);
   }
 }

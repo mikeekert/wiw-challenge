@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ApiUserResponse, User} from '../../user';
 import {FormGroup, FormControl} from '@angular/forms';
 import {ApiService} from '../../services/wiw_apiResponse.service';
+import {Router} from '@angular/router';
 
 @Component({selector: 'app-edit', templateUrl: './edit.component.html', styleUrls: ['./edit.component.scss'], providers: []})
 
@@ -9,7 +10,7 @@ export class EditComponent implements OnInit {
 
   UserFeed: User;
   userDetails: FormGroup;
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     this
@@ -27,6 +28,11 @@ export class EditComponent implements OnInit {
   onSubmit() {
     this
       .apiService
-      .updateUserInfo(this.userDetails.value);
+      .updateUserInfo(this.userDetails.value)
+      .subscribe(data => {
+        this
+          .router
+          .navigate(['']);
+      });
   }
 }
