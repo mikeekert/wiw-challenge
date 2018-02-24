@@ -1,3 +1,8 @@
-<p>
-  edit works!
-</p>
+<div>
+  <form [formGroup]="userDetails" *ngIf="UserFeed" (ngSubmit)="onSubmit()">
+    <input type="text" id="first_name" formControlName="first_name">
+    <input type="text" id="last_name" formControlName="last_name">
+    <input type="text" id="email" formControlName="email">
+    <button type="submit">save</button>
+  </form>
+</div>
