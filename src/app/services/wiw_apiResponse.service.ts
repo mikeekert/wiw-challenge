@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
 import {ApiUserResponse} from '../../app/user';
+import {Positions, PositionsWrapper} from '../user-profile/positions/positions';
 
 @Injectable()
 export class ApiService {
@@ -33,5 +34,10 @@ export class ApiService {
       'email': userInfo.email
     };
     return this.http.post < ApiUserResponse > (apiUrl, data, this.httpOptions);
+  }
+  getPositions() {
+    this.feedApiUrn = `positions`;
+    const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}`;
+    return this.http.get < PositionsWrapper > (apiUrl, this.httpOptions);
   }
 }

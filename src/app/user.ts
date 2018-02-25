@@ -10,7 +10,6 @@ export interface ApiUserResponse {
     };
 }
 
-
 export class User {
     FirstName: string;
     LastName: string;
@@ -18,18 +17,18 @@ export class User {
     Avatar: Avatar;
     Positions: string[];
 
-    constructor (apiResponse: ApiUserResponse) {
+    constructor(apiResponse: ApiUserResponse) {
         this.FirstName = apiResponse.user.first_name;
         this.LastName = apiResponse.user.last_name;
         this.Email = apiResponse.user.email;
-        this.Avatar = new Avatar( apiResponse.user.avatar.url );
+        this.Avatar = new Avatar(apiResponse.user.avatar.url);
         this.Positions = apiResponse.user.positions;
     }
 }
 
 export class Avatar {
     Url: string;
-    constructor (url: string) {
+    constructor(url: string) {
         this.Url = url;
     }
 }

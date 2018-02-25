@@ -1,5 +1,5 @@
-<section class="wiw-locationtable">
-
-
-    
+<section class="wiw-locationtable" *ngIf="positionsArray">
+  <div *ngFor="let i of positionsArray">
+    {{ i.Name }}
+  </div>
 </section>
