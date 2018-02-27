@@ -12,6 +12,7 @@ export class PositionsComponent implements OnInit {
   positionsArray: UserPosition[] = [];
   reassignForm: FormGroup;
   loaded: boolean;
+  edit: false;
 
   ngOnInit() {
     this
@@ -33,13 +34,14 @@ export class PositionsComponent implements OnInit {
             .positionsArray
             .push(new UserPosition(i));
 
-          // created loop to generate angular form control 'names' based on the IDs of the
-          // positions
+          // made loop to generate angular form control 'names'
+          // based on the IDs of the positions
           group[`${i.id}`] = '';
         }
+        // delay loading the control group until group array is built
         this.loaded = true;
 
-        // creating the form control group using array of IDs
+        // creating the angular form control group using array of IDs
         this.reassignForm = this
           .fb
           .group(group);
@@ -49,7 +51,7 @@ export class PositionsComponent implements OnInit {
   reassign(e) {
     const assignedArray = e.value;
     const positionIds = Object.keys(assignedArray);
-    // angular dynamicform checkboxes return true/false as a value, searching array
+    // angular dynamicform checkboxes return true/false as a value. searching array
     // and returning position IDs that are marked true at time of submit
     const filtered: any[] = positionIds.filter(function (key) {
       return assignedArray[key];
@@ -65,6 +67,7 @@ export class PositionsComponent implements OnInit {
           .getAssignedPositions(this.UserFeed)
           .subscribe(resp => {
             this.UserFeed.Positions = resp.user.positions;
+            this.edit = false;
           });
       });
   }

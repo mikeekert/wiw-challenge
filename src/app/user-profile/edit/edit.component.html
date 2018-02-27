@@ -1,4 +1,5 @@
-<div>
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column">
+  <div class="h3">Edit Profile Info:</div>
   <form [formGroup]="userDetails" *ngIf="UserFeed" (ngSubmit)="onSubmit()">
     <input type="text" id="first_name" formControlName="first_name">
     <input type="text" id="last_name" formControlName="last_name">

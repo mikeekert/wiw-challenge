@@ -13,7 +13,7 @@ export class ApiService {
   }
   private apiUriBase: string;
   private feedApiUrn: string;
-  data = {};
+  private data = {};
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json', 'W-Token': environment.token})

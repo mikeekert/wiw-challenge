@@ -14,8 +14,8 @@ export class UserProfileComponent implements OnInit {
       .getUserInfo()
       .subscribe(res => {
         this.UserFeed = new User(res);
-        console.log(this.UserFeed);
-        // needed to adjust the api data, to remove extraneous characters at end of url
+
+        // needed to adjust the dev/stage api data, to remove extraneous 'size' characters at end of url
         this.UserFeed.Avatar.Url = this
           .UserFeed
           .Avatar
