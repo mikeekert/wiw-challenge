@@ -1,0 +1,9 @@
+<div class="wiw-username" *ngIf="UserFeed != null">
+  <h1 class="font-weight-bold text-center text-uppercase m-0">{{ UserFeed.FirstName }} {{ UserFeed.LastName }}</h1>
+  <h6 class="font-weight-light text-center text-lowercase m-0">{{ UserFeed.Email }}</h6>
+  <p class="wiw-edit text-center text-primary">
+    <a routerLink="/edit">Edit
+      <i class="far fa-edit"></i>
+    </a>
+  </p>
+</div>

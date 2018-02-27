@@ -1,0 +1,12 @@
+<section>
+    <div *ngIf="error" class="text-center">Please Login Again</div>
+  </section>
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column" *ngIf="!error">
+  <div class="h3">Edit Profile Info:</div>
+  <form [formGroup]="userDetails" *ngIf="UserFeed" (ngSubmit)="onSubmit()">
+    <input type="text" id="first_name" formControlName="first_name">
+    <input type="text" id="last_name" formControlName="last_name">
+    <input type="text" id="email" formControlName="email">
+    <button type="submit">save</button>
+  </form>
+</div>
