@@ -6,18 +6,11 @@ import {DebugElement} from '@angular/core';
 describe('NavComponent', () => {
   let comp: NavComponent;
   let fixture: ComponentFixture < NavComponent >;
-  let de: DebugElement;
-  let el: HTMLElement;
 
   beforeEach(async(() => {
     TestBed
       .configureTestingModule({declarations: [NavComponent]})
       .compileComponents();
-
-    de = fixture
-      .debugElement
-      .query(By.css('.wiw-nav'));
-    el = de.nativeElement;
   }));
 
   beforeEach(() => {
@@ -26,8 +19,8 @@ describe('NavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('show logout link when logged in', () => {
-    fixture.detectChanges();
-    expect(el.textContent).toContain('Logout');
+  it('links should be angular links', () => {
+    const links = fixture.nativeElement.querySelector('.nav-link');
+    expect(links.getAttribute('routerlink')).toBeTruthy();
   });
 });
