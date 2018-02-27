@@ -5,6 +5,7 @@ import {ApiService} from '../services/wiw_apiResponse.service';
 @Component({selector: 'app-user-profile', templateUrl: './user-profile.component.html', styleUrls: ['./user-profile.component.scss']})
 export class UserProfileComponent implements OnInit {
   UserFeed: User;
+  error: string;
 
   constructor(private apiService: ApiService) {}
 
@@ -15,12 +16,15 @@ export class UserProfileComponent implements OnInit {
       .subscribe(res => {
         this.UserFeed = new User(res);
 
-        // needed to adjust the dev/stage api data, to remove extraneous 'size' characters at end of url
+        // needed to adjust the dev/stage api data, to remove extraneous 'size'
+        // characters at end of url
         this.UserFeed.Avatar.Url = this
           .UserFeed
           .Avatar
           .Url
           .slice(0, -3);
+      }, err => {
+        return this.error = err.error;
       });
   }
 }

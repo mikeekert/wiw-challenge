@@ -1,4 +1,6 @@
-<section class="wiw-userdetails d-flex flex-column justify-content-center align-items-center container" *ngIf="UserFeed">
+<div *ngIf="error" class="text-center">Please login again</div>
+
+<section class="wiw-userdetails d-flex flex-column justify-content-center align-items-center container" *ngIf="UserFeed && !error">
   <div class="wiw-userimage m-3" >
     <img [src]="UserFeed.Avatar.Url">
   </div>

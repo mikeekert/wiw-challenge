@@ -10,6 +10,7 @@ export class EditComponent implements OnInit {
 
   UserFeed: User;
   userDetails: FormGroup;
+  error: string;
   constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
@@ -23,6 +24,8 @@ export class EditComponent implements OnInit {
           'last_name': new FormControl(this.UserFeed.LastName),
           'email': new FormControl(this.UserFeed.Email)
         });
+      }, err => {
+        this.error = err.error;
       });
 
   }

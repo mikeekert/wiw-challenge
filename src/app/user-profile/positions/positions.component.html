@@ -1,4 +1,7 @@
-<section class="wiw-positions-table container-fluid">
+<section>
+  <div *ngIf="error" class="text-center">Please Login Again</div>
+</section>
+<section class="wiw-positions-table container-fluid" *ngIf="!error">
   <div class="container-fluid wiw-positions-assigned">
     <form [formGroup]="reassignForm" (ngSubmit)="reassign(reassignForm)" *ngIf="loaded && edit" class="d-flex flex-column align-items-center">
         <span class="h3 text-center mt-4">Positions:</span>

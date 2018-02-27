@@ -9,6 +9,7 @@ export interface ApiUserResponse {
         };
         'positions': number[],
     };
+    'error': string;
 }
 
 export class User {
@@ -18,6 +19,7 @@ export class User {
     Id: number;
     Avatar: Avatar;
     Positions: number[];
+    Error: string;
 
     constructor(apiResponse: ApiUserResponse) {
         this.FirstName = apiResponse.user.first_name;
@@ -26,6 +28,7 @@ export class User {
         this.Id = apiResponse.user.id;
         this.Avatar = new Avatar(apiResponse.user.avatar.url);
         this.Positions = apiResponse.user.positions;
+        this.Error = apiResponse.error;
     }
 }
 

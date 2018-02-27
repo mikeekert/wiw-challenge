@@ -13,6 +13,7 @@ export class PositionsComponent implements OnInit {
   reassignForm: FormGroup;
   loaded: boolean;
   edit: false;
+  error: string;
 
   ngOnInit() {
     this
@@ -45,6 +46,8 @@ export class PositionsComponent implements OnInit {
         this.reassignForm = this
           .fb
           .group(group);
+      }, err => {
+        this.error = err.error;
       });
   }
 
@@ -68,7 +71,11 @@ export class PositionsComponent implements OnInit {
           .subscribe(resp => {
             this.UserFeed.Positions = resp.user.positions;
             this.edit = false;
+          }, err => {
+            return this.error = err.error;
           });
+      }, err => {
+        return this.error = err.error;
       });
   }
 }
