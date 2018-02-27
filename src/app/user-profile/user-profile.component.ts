@@ -14,12 +14,7 @@ export class UserProfileComponent implements OnInit {
       .getUserInfo()
       .subscribe(res => {
         this.UserFeed = new User(res);
-        this
-          .apiService
-          .getAssignedPositions(this.UserFeed)
-          .subscribe(resp => {
-
-          });
+        console.log(this.UserFeed);
         // needed to adjust the api data, to remove extraneous characters at end of url
         this.UserFeed.Avatar.Url = this
           .UserFeed

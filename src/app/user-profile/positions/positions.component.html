@@ -1,16 +1,16 @@
-<section class="wiw-positions-table container-fluid" *ngIf="positionsArray">
-  <div class="container-fluid wiw-positions-assigned" *ngIf="UserFeed">
+<section class="wiw-positions-table container-fluid">
+  <div class="container-fluid wiw-positions-assigned">
     <span>Positions</span>
     <hr>
-    <form [formGroup]="reassignForm" (ngSubmit)="reassignPosition(reassignForm)">
+    <form [formGroup]="reassignForm" (ngSubmit)="reassign(reassignForm)" *ngIf="loaded">
       <div *ngFor="let position of positionsArray; let i = index" class="d-flex">
         <span> {{ position.Name }}</span>
-        <input type="checkbox" name="{{i.Name}}" formControlName="{{position.Id}}" value="{{position.Id}}">
+        <input type="checkbox" name="{{i.Name}}" formControlName="{{position.Id}}" value="{{position.Id}}" [(ngModel)]="position.Assigned">
       </div>
       <button type="submit">Save</button>
     </form>
-    <div>
-      <p *ngFor="let i of UserFeed.Positions">Assigned: {{ i }}</p>
+    <div>Assigned: 
+      <p *ngFor="let i of UserFeed.Positions">{{ i }}</p>
     </div>
   </div>
 </section>

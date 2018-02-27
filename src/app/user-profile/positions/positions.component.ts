@@ -11,6 +11,7 @@ export class PositionsComponent implements OnInit {
   constructor(private apiService: ApiService, private fb: FormBuilder) {}
   positionsArray: UserPosition[] = [];
   reassignForm: FormGroup;
+  loaded: boolean;
 
   ngOnInit() {
     this
@@ -18,31 +19,53 @@ export class PositionsComponent implements OnInit {
       .getAllPositions()
       .subscribe(res => {
         const group = {};
+        // if any iteration of AllPositions is found in (UserFeed.Positions / assigned)
+        // mark i.assigned as true
         for (const i of res.positions) {
-          // created loop to generate angular form control 'names' based on the IDs of the positions
+          const found = this
+            .UserFeed
+            .Positions
+            .includes(i.id);
+          if (found) {
+            i.assigned = true;
+          }
           this
             .positionsArray
             .push(new UserPosition(i));
+
+          // created loop to generate angular form control 'names' based on the IDs of the
+          // positions
           group[`${i.id}`] = '';
         }
-        // creating the form control group with the list of IDs
+        this.loaded = true;
+
+        // creating the form control group using array of IDs
         this.reassignForm = this
           .fb
           .group(group);
       });
   }
 
-  reassignPosition(e) {
+  reassign(e) {
     const assignedArray = e.value;
     const positionIds = Object.keys(assignedArray);
-    const filtered: any[] = positionIds.filter(function(key) {
+    // angular dynamicform checkboxes return true/false as a value, searching array
+    // and returning position IDs that are marked true at time of submit
+    const filtered: any[] = positionIds.filter(function (key) {
       return assignedArray[key];
-  });
+    });
+
     this.UserFeed.Positions = filtered;
     this
       .apiService
       .reassignPosition(this.UserFeed)
       .subscribe(res => {
+        this
+          .apiService
+          .getAssignedPositions(this.UserFeed)
+          .subscribe(resp => {
+            this.UserFeed.Positions = resp.user.positions;
+          });
       });
   }
 }
