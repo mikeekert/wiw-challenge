@@ -1,5 +1,25 @@
-<section class="wiw-locationtable" *ngIf="positionsArray">
-  <div *ngFor="let i of positionsArray">
-    {{ i.Name }}
+<section class="wiw-positions-table container-fluid" *ngIf="positionsArray">
+
+  <div class="wiw-positions-test"> Add a specific position:
+    <select>
+      <option value="i.Id" *ngFor="let i of positionsArray"></option>
+    </select>
+    <button>Assign</button>
+  </div>
+
+  <div class="container-fluid wiw-positions-assigned">
+    <span>Positions</span>
+    <hr>
+
+
+    <form [formArrayName]="reassignForm" (ngSubmit)="reassignPosition()">
+      <div *ngFor="let position of positionsArray" class="d-flex">
+        <span> {{ position.Name }}</span>
+        <input type="checkbox" name="{{position.Name}}" formControlName="position" value="{{position.Id}}">
+      </div>
+      <button type="submit">Save</button>
+    </form>
+
+    
   </div>
 </section>

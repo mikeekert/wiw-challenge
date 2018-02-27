@@ -11,6 +11,8 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.apiService.getUserInfo().subscribe(res => {
       this.UserFeed = new User(res);
+      console.log(res);
+
       // needed to adjust the api data, to remove extraneous characters at end of url
       this.UserFeed.Avatar.Url = this
         .UserFeed

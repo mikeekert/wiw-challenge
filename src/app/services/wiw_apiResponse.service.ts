@@ -40,4 +40,11 @@ export class ApiService {
     const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}`;
     return this.http.get < PositionsWrapper > (apiUrl, this.httpOptions);
   }
+
+  reassignPosition(userInfo) {
+    this.feedApiUrn = `users`;
+    const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}/${userInfo.Id}`;
+    const data = userInfo.Positions;
+    return this.http.put < PositionsWrapper > (apiUrl, this.httpOptions);
+  }
 }
