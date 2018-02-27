@@ -1,20 +1,18 @@
 <section class="wiw-positions-table container-fluid">
   <div class="container-fluid wiw-positions-assigned">
-    <form [formGroup]="reassignForm" (ngSubmit)="reassign(reassignForm)" *ngIf="loaded && edit" class="d-flex flex-column">
-      <hr>
-      <span class="h3 text-center">Positions:</span>
+    <form [formGroup]="reassignForm" (ngSubmit)="reassign(reassignForm)" *ngIf="loaded && edit" class="d-flex flex-column align-items-center">
+        <span class="h3 text-center mt-4">Positions:</span>
             <div *ngFor="let position of positionsArray; let i = index" class="d-flex align-items-center">
-        <span class="p-3"> {{ position.Name }}
+        <span class="p-3 d-flex align-items-center"> {{ position.Name }}
           <input type="checkbox" name="{{i.Name}}" formControlName="{{position.Id}}" value="{{position.Id}}"
-            [(ngModel)]="position.Assigned">
+            [(ngModel)]="position.Assigned" class="mx-2">
         </span>
       </div>
       <button type="submit" class="btn btn-primary btn-sm m-3">Save</button>
     </form>
-    <hr>
     <div class="justify-content-center align-items-baseline container-fluid" *ngIf="!edit">
       <div class="w-100">
-        <p class="h3 text-center">Assigned Positions:</p>
+        <p class="h3 text-center mt-4">Assigned Positions:</p>
         
         <p class="wiw-edit text-center text-primary">
           <a (click)="edit=true">Edit
