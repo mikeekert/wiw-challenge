@@ -35,16 +35,30 @@ export class ApiService {
     };
     return this.http.post < ApiUserResponse > (apiUrl, data, this.httpOptions);
   }
-  getPositions() {
+  getAllPositions() {
     this.feedApiUrn = `positions`;
     const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}`;
+    return this.http.get < PositionsWrapper > (apiUrl, this.httpOptions);
+  }
+
+  getAssignedPositions(userInfo) {
+    this.feedApiUrn = `users`;
+    const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}/${userInfo.Id}`;
+    return this.http.get < ApiUserResponse > (apiUrl, this.httpOptions);
+  }
+
+  retreivePositionName(id) {
+    this.feedApiUrn = `positions`;
+    const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}/${id}`;
     return this.http.get < PositionsWrapper > (apiUrl, this.httpOptions);
   }
 
   reassignPosition(userInfo) {
     this.feedApiUrn = `users`;
     const apiUrl = `${this.apiUriBase}/${this.feedApiUrn}/${userInfo.Id}`;
-    const data = userInfo.Positions;
-    return this.http.put < PositionsWrapper > (apiUrl, this.httpOptions);
+    const data = {
+      'positions': userInfo.Positions
+    };
+    return this.http.put < PositionsWrapper > (apiUrl, data, this.httpOptions);
   }
 }

@@ -24,6 +24,7 @@ export class EditComponent implements OnInit {
           'email': new FormControl(this.UserFeed.Email)
         });
       });
+
   }
   onSubmit() {
     this

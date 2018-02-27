@@ -9,16 +9,23 @@ export class UserProfileComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getUserInfo().subscribe(res => {
-      this.UserFeed = new User(res);
-      console.log(res);
+    this
+      .apiService
+      .getUserInfo()
+      .subscribe(res => {
+        this.UserFeed = new User(res);
+        this
+          .apiService
+          .getAssignedPositions(this.UserFeed)
+          .subscribe(resp => {
 
-      // needed to adjust the api data, to remove extraneous characters at end of url
-      this.UserFeed.Avatar.Url = this
-        .UserFeed
-        .Avatar
-        .Url
-        .slice(0, -3);
-    });
+          });
+        // needed to adjust the api data, to remove extraneous characters at end of url
+        this.UserFeed.Avatar.Url = this
+          .UserFeed
+          .Avatar
+          .Url
+          .slice(0, -3);
+      });
   }
 }

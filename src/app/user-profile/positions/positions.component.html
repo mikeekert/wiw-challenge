@@ -1,25 +1,16 @@
 <section class="wiw-positions-table container-fluid" *ngIf="positionsArray">
-
-  <div class="wiw-positions-test"> Add a specific position:
-    <select>
-      <option value="i.Id" *ngFor="let i of positionsArray"></option>
-    </select>
-    <button>Assign</button>
-  </div>
-
-  <div class="container-fluid wiw-positions-assigned">
+  <div class="container-fluid wiw-positions-assigned" *ngIf="UserFeed">
     <span>Positions</span>
     <hr>
-
-
-    <form [formArrayName]="reassignForm" (ngSubmit)="reassignPosition()">
-      <div *ngFor="let position of positionsArray" class="d-flex">
+    <form [formGroup]="reassignForm" (ngSubmit)="reassignPosition(reassignForm)">
+      <div *ngFor="let position of positionsArray; let i = index" class="d-flex">
         <span> {{ position.Name }}</span>
-        <input type="checkbox" name="{{position.Name}}" formControlName="position" value="{{position.Id}}">
+        <input type="checkbox" name="{{i.Name}}" formControlName="{{position.Id}}" value="{{position.Id}}">
       </div>
       <button type="submit">Save</button>
     </form>
-
-    
+    <div>
+      <p *ngFor="let i of UserFeed.Positions">Assigned: {{ i }}</p>
+    </div>
   </div>
 </section>
